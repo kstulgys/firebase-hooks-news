@@ -1,22 +1,24 @@
-import React, { useContext } from "react";
-import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
-import CreateLink from "./Link/CreateLink";
-import Login from "./Auth/Login";
-import ForgotPassword from "./Auth/ForgotPassword";
-import SearchLinks from "./Link/SearchLinks";
-import LinkList from "./Link/LinkList";
-import LinkDetail from "./Link/LinkDetail";
-import Header from "./Header";
-import useAuth from "./Auth/useAuth";
-import firebase, { FirebaseContext } from "../firebase";
+import React, { useContext } from "react"
+import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom"
+import CreateLink from "./Link/CreateLink"
+import Login from "./Auth/Login"
+import ForgotPassword from "./Auth/ForgotPassword"
+import SearchLinks from "./Link/SearchLinks"
+import LinkList from "./Link/LinkList"
+import LinkDetail from "./Link/LinkDetail"
+import Header from "./Header"
+import useAuth from "./Auth/useAuth"
+import firebase, { FirebaseContext } from "../firebase"
+import Nav from "./Nav"
 
 function App() {
-  const user = useAuth();
+  const user = useAuth()
 
   return (
     <BrowserRouter>
       <FirebaseContext.Provider value={{ user, firebase }}>
-        <div className="app-container">
+        <div className="min-vh-100 bg-warning">
+          <Nav />
           <Header />
           <div className="route-container">
             <Switch>
@@ -30,10 +32,11 @@ function App() {
               <Route path="/link/:linkId" component={LinkDetail} />
             </Switch>
           </div>
+          <button className="btn">Hello</button>
         </div>
       </FirebaseContext.Provider>
     </BrowserRouter>
-  );
+  )
 }
 
-export default App;
+export default App
